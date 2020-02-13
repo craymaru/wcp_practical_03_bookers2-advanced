@@ -4,11 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # Adds: Associations 1(User):N(Book)
+  # ASSOCIATIONS
   has_many :books, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  # Adds:
+  # REFILE ATTACHMENT
   attachment :profile_image
 
   # Adds: except email from devise
@@ -22,7 +23,7 @@ class User < ApplicationRecord
   # end
   # COMMENT OUT ^
 
-  # Varidation
+  # VARIDATIONS
 
   validates :name,
     uniqueness: true,
