@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # Adds: Associations 1(User):N(Book)
   has_many :books, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # Adds:
   attachment :profile_image

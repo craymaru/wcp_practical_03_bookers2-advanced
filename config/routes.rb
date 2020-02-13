@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
-  root :to => 'home#top'
-  get 'home/about'
+  # ROUTES
+
+  # ROOT
+  root "home#top"
+
+  # ABOUT
+  get "home/about"
+
+  # RESOURCES
   devise_for :users
-  resources :books, only: [:index, :show, :edit, :create, :update, :destroy]
   resources :users, only: [:index, :show, :edit, :update]
+  
+  resources :books, only: [:index, :show, :edit, :create, :update, :destroy] do
+    resource :favorites, only: [:create, :destroy]
+  end
+
   get "users/:id" => "users#show", as: :mypage
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
