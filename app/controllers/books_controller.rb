@@ -7,14 +7,21 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.order(created_at: :desc)
-    @book_new = Book.new # left content
-    @user = current_user # left content
+    # LEFT CONTENT
+    @book_new = Book.new
+    @user = current_user
   end
 
   def show
     @book = Book.find(params[:id])
-    @user = current_user # left content
-    @book_new = Book.new # left content
+    
+    # LEFT CONTENT
+    @user = current_user
+    @book_new = Book.new
+    
+    # COMMENT
+    # @book_comment = @book.book_comments.new
+    @book_comment = BookComment.new
   end
 
   def edit
